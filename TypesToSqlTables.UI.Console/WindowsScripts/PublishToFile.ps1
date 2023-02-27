@@ -1,7 +1,24 @@
 param(
-	[parameter(Mandatory=$true)]
-	[String] $AssemblyName
-	[String] $SchemaName
-)
+	[parameter(
+        Position=0, 
+        Mandatory=$true, 
+        ValueFromPipeline=$true,
+        ValueFromPipelineByPropertyName=$true)]
+	[String] $AssemblyPath,
 
-& ../ExploreAssemblies.exe "../$AssemblyName.dll" | Out-File -FilePath .\$AssemblyName.sql
+    [parameter(
+        Position=0, 
+        Mandatory=$true, 
+        ValueFromPipeline=$true,
+        ValueFromPipelineByPropertyName=$true)]
+	[String] $SchemaName,
+
+    [parameter(
+        Position=0, 
+        Mandatory=$true, 
+        ValueFromPipeline=$true,
+        ValueFromPipelineByPropertyName=$true)]
+	[String] $WritePath
+    )
+
+& ../TypesToSqlTables.UI.ConsoleCli.exe "$AssemblyPath" "$SchemaName" | Out-File -FilePath "$WritePath"

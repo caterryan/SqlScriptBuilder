@@ -10,4 +10,8 @@
     <PackageReference Include="Npgsql.NodaTime" Version="7.0.2" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\TypesToSqlTables.TestClass\TypesToSqlTables.TestClass.csproj" />
+  </ItemGroup>
+
 </Project>
