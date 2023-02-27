@@ -7,11 +7,18 @@ public class Program
 {
     static void Main(string[] args)
     {
-        string assemblyPath = args.FirstOrDefault();
-        string schemaName = args[1];
+        Assembly assembly;
+        (string assemblyPath, string schemaName) = Helpers.GetInputParameters(args);
 
-        var assembly = Assembly.LoadFrom(assemblyPath);
-
+        try
+        {
+            assembly = Assembly.LoadFrom(assemblyPath);
+        }
+        catch (Exception e)
+        {
+            throw new ArgumentException($"Invalid input for .dll assembly: {assemblyPath}", e);
+        }
+        
         TypeTables typeTables = new TypeTables(assembly, schemaName);
 
         foreach (string script in typeTables.ScriptsCreateTable)

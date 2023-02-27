@@ -23,6 +23,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\TypesToSqlTables.Library\TypesToSqlTables.Library.csproj" />
+    <ProjectReference Include="..\TypesToSqlTables.UI.Console\TypesToSqlTables.UI.ConsoleCli.csproj" />
   </ItemGroup>
 
 </Project>
