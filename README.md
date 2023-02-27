@@ -7,7 +7,7 @@ Requires two input parameters from the console
 * Path to .dll assembly
 * Schema name in postgresql database
 
-Windows Powershell scripts are included as usage examples.
+Windows Powershell scripts are included as usage examples. To use them, be sure to build the .NET project first, then run the powershell scripts located in the build folder. They will not work from the source files. 
 
 The scripts can also be used as part of a CI/CD or build workflow by piping in the parameters and piping the output to something like a file.
 

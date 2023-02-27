@@ -1,7 +1,17 @@
 param(
-	[parameter(Mandatory=$true)]
-	[String] $AssemblyName
-	[String] $SchemaName
-)
+	[parameter(
+        Position=0, 
+        Mandatory=$true, 
+        ValueFromPipeline=$true,
+        ValueFromPipelineByPropertyName=$true)]
+	[String] $AssemblyPath,
 
-& ../ExploreAssemblies.exe "../$AssemblyName.dll"
+    [parameter(
+        Position=0, 
+        Mandatory=$true, 
+        ValueFromPipeline=$true,
+        ValueFromPipelineByPropertyName=$true)]
+	[String] $SchemaName
+    ) 
+
+& ../TypesToSqlTables.UI.ConsoleCli.exe "$AssemblyPath" "$SchemaName"

@@ -1,4 +1,4 @@
-namespace TypesToSqlTables.Tests;
+namespace TypesToSqlTables.TestClass;
 
 public class TestTypeToTable
 {
