@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "ExploreAssemblies": {
+      "commandName": "Project",
+      "commandLineArgs": "\"C:\\Users\\cater\\source\\repos\\ExploreAssembliesApp\\ExploreAssemblies\\bin\\Debug\\net7.0\\TestAssembly.dll\" \"testschema\""
+    }
+  }
+}
