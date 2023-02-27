@@ -11,7 +11,7 @@ Windows Powershell scripts are included as usage examples.
 
 The scripts can also be used as part of a CI/CD or build workflow by piping in the parameters and piping the output to something like a file.
 
-Also included are unit tests and TestClass.cs for performing basic tests.
+Also included is a TestClass.cs for testing functionality. Just run the app, pass in the path to TestClass.dll, and provide a Schema Name. 
 
 Default type mapping is changed using typeMap in Constants.cs. If a KV pair of types is not found, a complex type is assumed, and a foreign key is created.
 
