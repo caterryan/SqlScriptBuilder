@@ -1,7 +1,8 @@
 {
   "profiles": {
     "ExploreAssemblies": {
-      "commandName": "Project"
+      "commandName": "Project",
+      "commandLineArgs": "-a .\\TypesToSqlTables.TestClass.dll -s SchemaName"
     }
   }
 }
