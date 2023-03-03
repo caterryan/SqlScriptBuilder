@@ -1,5 +1,5 @@
 # TypesToSqlTablesApp
-#### Simple Utility for converting .NET Types to Postgresql tables, fields, and foreign keys to help initialize databases and to manage schemas.
+#### Converts .NET Types to Postgresql tables, fields, and foreign keys to help initialize databases and to manage schemas.
 
 
 ## Usage
