@@ -7,6 +7,8 @@
     <Nullable>enable</Nullable>
     <AssemblyName>SqlScriptBuilder</AssemblyName>
     <ApplicationIcon>scroll.ico</ApplicationIcon>
+	<VersionPrefix>1.0.1</VersionPrefix>
+	  <VersionSuffix>a</VersionSuffix>
   </PropertyGroup>
 
   <ItemGroup>
