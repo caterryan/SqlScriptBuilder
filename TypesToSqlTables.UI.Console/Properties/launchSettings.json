@@ -2,7 +2,7 @@
   "profiles": {
     "ExploreAssemblies": {
       "commandName": "Project",
-      "commandLineArgs": "-a .\\TypesToSqlTables.TestClass.dll -s SchemaName"
+      "commandLineArgs": "convert -a .\\TypesToSqlTables.TestClass.dll -s SchemaName"
     }
   }
 }
