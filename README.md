@@ -19,6 +19,10 @@ Default type mapping is changed using typeMap in Constants.cs. If a KV pair of t
 ## Dependencies
 NodaTime for mapping time types to postgresql
 
+https://www.npgsql.org/
+
+Uses NodaTime for mapping time types to postgresql
+
 https://nodatime.org/
 
 System.CommandLine for the CLI interface
