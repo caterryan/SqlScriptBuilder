@@ -5,7 +5,7 @@ VisualStudioVersion = 17.4.33213.308
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SqlScriptBuilder.Library", "TypesToSqlTables.Library\SqlScriptBuilder.Library.csproj", "{02281DD7-B19F-47FE-8032-B6E3E82AC811}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TypesToSqlTables.UI.ConsoleCli", "TypesToSqlTables.UI.Console\TypesToSqlTables.UI.ConsoleCli.csproj", "{741978DB-5B92-4836-9098-D1820848E338}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SqlScriptBuilder.UI.ConsoleCli", "TypesToSqlTables.UI.Console\SqlScriptBuilder.UI.ConsoleCli.csproj", "{741978DB-5B92-4836-9098-D1820848E338}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{B244B8DA-A9DD-4DA3-B65D-BCA0338C0321}"
 	ProjectSection(SolutionItems) = preProject
