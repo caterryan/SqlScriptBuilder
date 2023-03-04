@@ -1,4 +1,4 @@
-# TypesToSqlTablesApp
+# SqlScriptBuilderApp
 #### Converts .NET Types to Postgresql tables, fields, and foreign keys to help initialize databases and to manage schemas.
 
 
@@ -17,6 +17,10 @@ The output is sent to the console, but it can be piped to a file. E.g. using pow
 Default type mapping is changed using typeMap in Constants.cs. If a KV pair of types is not found, a complex type is assumed, and a foreign key is created.
 
 ## Dependencies
-Uses NodaTime for mapping time types to postgresql
+NodaTime for mapping time types to postgresql
 
 https://nodatime.org/
+
+System.CommandLine for the CLI interface
+
+https://learn.microsoft.com/en-us/dotnet/standard/commandline/syntax
