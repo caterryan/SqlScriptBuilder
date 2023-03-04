@@ -1,9 +1,10 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>net7.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
+    <AssemblyName>SqlScriptBuilder.Library</AssemblyName>
   </PropertyGroup>
 
   <ItemGroup>
@@ -11,7 +12,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\TypesToSqlTables.TestClass\TypesToSqlTables.TestClass.csproj" />
+    <ProjectReference Include="..\TypesToSqlTables.TestClass\SqlScriptBuilder.TestClass.csproj" />
   </ItemGroup>
 
 </Project>

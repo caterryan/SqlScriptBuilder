@@ -1,4 +1,8 @@
-﻿using System.Reflection;
+﻿using NodaTime;
+using System.CommandLine;
+using System.Reflection;
+using System.Runtime.Serialization;
+using System.Security.Cryptography.X509Certificates;
 using TypesToSqlTables.Library;
 
 namespace TypesToSqlTables.UI.ConsoleCli;
@@ -7,40 +11,47 @@ public class Program
 {
     static int Main(string[] args)
     {
-        int exitCode = 0;
-        Assembly assembly;
-        //(string assemblyPath, string schemaName) = Helpers.GetInputParameters(args);
-        CommandLineInputs inputs = new CommandLineInputs();
-        int inputsExitCode = inputs.GetInputs(args);
-        
-        if (inputsExitCode != 0)
+        RootCommand rootCommand = new RootCommand
         {
-            return inputsExitCode;
-        }
+            Name = "SqlScriptBuilder.exe",
+            Description = "Utility for creating SQL scripts for initializing and manage database schemas.",
+            IsHidden = false,
+            TreatUnmatchedTokensAsErrors = true
+        };
 
-        try
+        Command convertCommand = new(name: "build")
         {
-            assembly = Assembly.LoadFrom(inputs.Inputs.AssemblyPath);
-        }
-        catch (Exception e)
+            Description = "Converts the Types in a .NET .dll Assembly to a SQL script that creates Postgresql tables, fields, and foreign keys.",
+            IsHidden = false,
+            TreatUnmatchedTokensAsErrors = true
+        };
+        rootCommand.AddCommand(convertCommand);
+
+        Option<FileInfo> assemblyPathOption = new(name: "--assembly")
         {
-            throw new ArgumentException($"Invalid input for .dll assembly: {inputs.Inputs.AssemblyPath}", e);
-        }
-        
-        TypeTables typeTables = new TypeTables(assembly, inputs.Inputs.SchemaName);
+            Description = "The relative or absolute path to the .dll assembly",
+            ArgumentHelpName = "path",
+            AllowMultipleArgumentsPerToken = false,
+            IsHidden = false,
+            IsRequired = true
+        };
+        assemblyPathOption.AddAlias("-a");
+        convertCommand.AddOption(assemblyPathOption);
 
-        foreach (string script in typeTables.ScriptsCreateTable)
+        Option<string> schemaNameOption = new(name: "--schema")
         {
-            Console.WriteLine(script);
-        }
+            Description = "The name of the existing PostgreSQL schema",
+            ArgumentHelpName = "schemaName",
+            AllowMultipleArgumentsPerToken = false,
+            IsHidden = false,
+            IsRequired = true
+        };
+        schemaNameOption.AddAlias("-s");
+        convertCommand.AddOption(schemaNameOption);
 
-        foreach (string script in typeTables.ScriptsAddForeignKey)
-        {
-            Console.WriteLine(script);
-        }
+        convertCommand.SetHandler(Helpers.GetConvertHandle(), assemblyPathOption, schemaNameOption);
 
-
-        return exitCode;
+        return rootCommand.InvokeAsync(args).Result;
     }
 }
 

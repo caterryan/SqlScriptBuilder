@@ -1,43 +1,42 @@
-﻿namespace TypesToSqlTables.UI.ConsoleCli;
+﻿using System.Reflection;
+using TypesToSqlTables.Library;
+
+namespace TypesToSqlTables.UI.ConsoleCli;
 
 internal static class Helpers
 {
-
-    internal static (string assemblyPath, string schemaName) GetInputParameters(string[] args)
+    public static Action<FileInfo, string> GetConvertHandle()
     {
-        string assemblyPath;
-        string schemaName;
-
-        if (args.Length == 2)
+        return (assemblyPath, schemaName) =>
         {
-            assemblyPath = args.FirstOrDefault();
-            schemaName = args[1];
-        }
-        else
-        {
-            Console.WriteLine(
-                $"""
-                Invalid number of input parameters.
-                Number of parameters provided: {args.Length}
-                
-                Required Parameters: 
-                  - Path to .dll Assembly
-                  - Schema Name
+            if (!assemblyPath.Exists)
+            {
+                throw new ArgumentException("Invalid Input: assembly path does not exist");
+            }
 
-                """);
+            Assembly assembly;
 
-            Console.Write("Assembly Path: ");
-            assemblyPath = Console.ReadLine();
+            try
+            {
+                assembly = Assembly.LoadFrom(assemblyPath.FullName);
+            }
+            catch (Exception e)
+            {
+                throw new ArgumentException($"Invalid input for .dll assembly: {assemblyPath.FullName}", e);
+            }
 
-            Console.Write("Schema Name: ");
-            schemaName = Console.ReadLine();
-        }
+            TypeTables typeTables = new TypeTables(assembly, schemaName);
 
-        if (schemaName == "" || schemaName == null)
-        {
-            throw new ArgumentException("Invalid input: Schema Name cannot be empty or null");
-        }
+            foreach (string script in typeTables.ScriptsCreateTable)
+            {
+                Console.WriteLine(script);
+            }
 
-        return (assemblyPath, schemaName);
+            foreach (string script in typeTables.ScriptsAddForeignKey)
+            {
+                Console.WriteLine(script);
+            }
+        };
+
     }
 }

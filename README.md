@@ -3,15 +3,16 @@
 
 
 ## Usage
-Requires two input parameters from the console
-* Path to .dll assembly
+Run "SqlScriptBuilder.exe --help" in a terminal for detailed usage.
+
+Requires two input parameters
+* Path to a .dll assembly 
 * Schema name in postgresql database
 
-Windows Powershell scripts are included as usage examples. To use them, be sure to build the .NET project first, then run the powershell scripts located in the build folder. They will not work from the source files. 
-
-The scripts can also be used as part of a CI/CD or build workflow by piping in the parameters and piping the output to something like a file.
-
-Also included is a TestClass.cs for testing functionality. Just run the app, pass in the path to TestClass.dll, and provide a Schema Name. 
+The output is sent to the console, but it can be piped to a file. E.g. using powershell and the included TestClass.dll: 
+```				
+& .\SqlScriptBuilder.exe build --assembly .\TestClass.dll  --schema schemaname | Out-File -FilePath "output.sql"
+```
 
 Default type mapping is changed using typeMap in Constants.cs. If a KV pair of types is not found, a complex type is assumed, and a foreign key is created.
 
