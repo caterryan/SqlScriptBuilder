@@ -17,6 +17,9 @@ The output is sent to the console, but it can be piped to a file. E.g. using pow
 Default type mapping is changed using typeMap in Constants.cs. If a KV pair of types is not found, a complex type is assumed, and a foreign key is created.
 
 ## Dependencies
-Uses NodaTime for mapping time types to postgresql
+Uses npgsql as the .NET to postgresql provider
+https://www.npgsql.org/
 
+Uses NodaTime for mapping time types to postgresql
 https://nodatime.org/
+
