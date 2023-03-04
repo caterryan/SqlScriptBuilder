@@ -11,6 +11,9 @@ public class Program
 {
     static int Main(string[] args)
     {
+
+        #region Commands
+
         RootCommand rootCommand = new RootCommand
         {
             Name = "SqlScriptBuilder.exe",
@@ -26,6 +29,11 @@ public class Program
             TreatUnmatchedTokensAsErrors = true
         };
         rootCommand.AddCommand(convertCommand);
+
+
+        #endregion
+
+        #region Options
 
         Option<FileInfo> assemblyPathOption = new(name: "--assembly")
         {
@@ -49,7 +57,15 @@ public class Program
         schemaNameOption.AddAlias("-s");
         convertCommand.AddOption(schemaNameOption);
 
-        convertCommand.SetHandler(Helpers.GetConvertHandle(), assemblyPathOption, schemaNameOption);
+
+        #endregion
+
+        #region Handlers
+
+        convertCommand.SetHandler(ConvertHandler.GetHandle(), assemblyPathOption, schemaNameOption);
+
+
+        #endregion
 
         return rootCommand.InvokeAsync(args).Result;
     }

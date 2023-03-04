@@ -1,11 +1,11 @@
 ﻿using System.Reflection;
 using TypesToSqlTables.Library;
 
-namespace TypesToSqlTables.UI.ConsoleCli;
+namespace TypesToSqlTables.Library;
 
-internal static class Helpers
+public static class ConvertHandler
 {
-    public static Action<FileInfo, string> GetConvertHandle()
+    public static Action<FileInfo, string> GetHandle()
     {
         return (assemblyPath, schemaName) =>
         {
